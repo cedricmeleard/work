@@ -3,7 +3,11 @@
 Voici le code lié au coding dojo,
 probleme du Fizzbuzz
 
-# Description
+1. [Description](#description)
+2. [Pré requis](#pré-requis)
+3. [A propos de Go](#a-propos-de-go)
+
+## Description
 
 On cherche a répondre au problème du fizzbuzz.
 Il s'agit d'un programme qui compte en fizzbuzz jusqu'a un chiffre donné par l'utilisateur.
@@ -15,7 +19,7 @@ Règle pour 1 chiffre:
 - Si il est multiple des 2 alors "FizzBuzz"
 - Dans autres cas, le programme retourne la valeur
 
-# Pré requis
+## Pré requis
 
 Vous devez avoir une installation de Go, voir :
 https://golang.org/dl/
@@ -30,9 +34,9 @@ Pour lancer le programme
 
 > go run fizzbuzz.go
 
-# A propos de Go (Aide mémoire)
+## A propos de Go
 
-## Variables
+### Variables
 
 Décalaration d'une variable afin d'y stocker une valeur:
 
@@ -54,7 +58,7 @@ Go étant fortement typé il faut préciser le type après le nom de la variable
 
 nb: Le compilateur de Go ne tolère pas une variable non utlisée, si vous la déclarez sans vous en servir, il y aura une erreur de compilation
 
-## Conditionnelles
+### Conditionnelles
 
 avec Go on a if et switch, rien de bien différent des autres langages au niveau de la déclaration
 
@@ -74,7 +78,7 @@ switch maVariable {
 Proche...Sauf que le switch n'a pas besoin de break, cela veut aussi dire que les instructions suivantes ne sont pas exécutées comme habituellement.
 Cela fait parti des concepts de simplicité de Go
 
-## Boucles
+### Boucles
 
 Si on veut itérer sur une liste ou sur une condition, habituel, vous avez for, foreach, while, do while, loop..Bref...A ne plus savoir lequel choisir.
 Avec Go, vous avez for...Et c'est tout (et c'est très bien), voyons ca:
@@ -94,7 +98,21 @@ for {
 }
 ```
 
-## Fonctions
+Lorsque l'on itère sur un tableau il y a une manière spécifique de faire, en utilisant `range`
+
+```go
+// une boucle habituelle for...
+for index, valeur := range monTableau {
+    // ...
+}
+```
+
+Il est possible de ne pas tenir compte de l'index en remplacant par `_` ou de ne pas tenir compte de la valeur du tableau en la suppirmant `index := range`
+
+Dans go les tableaux ont un comportement bien particulier, Array & Slices, vous pouvez en savoir plus ici:
+https://tour.golang.org/moretypes/6
+
+### Fonctions
 
 Déclaration d'une fonction
 
@@ -112,7 +130,7 @@ A noter, la partie `(evil string, e bool)` défini le retour de la fonction,
 Go permet de retourner plusieurs valeur en retour.
 Ici nous les avons nommé, elles disponibles sans autre déclaration dans le corps de la fonction
 
-Dans l'exemple ci dessus on voir `return` c'est ok avec Go, on est pas obligé de passer les valeurs, elle sont implicitement déduite, par contre ce n'est pas toujours à faire pour des questions de lisibilité
+Dans l'exemple ci dessus on voit `return` c'est ok avec Go, on est pas obligé de passer les valeurs, elle sont implicitement déduites, par contre ce n'est pas une bonne pratique pour des questions de lisibilité
 
 Un autre point interessant est que l'on peut affecter une fonction a une variable, ainsi
 
@@ -124,7 +142,7 @@ a(1234)
 // ou meme la passer en parametre d'une autre fonction ;)
 ```
 
-## Objets
+### Objets
 
 On peut définir des types avec Go, pour faire simple:
 
@@ -153,7 +171,7 @@ func (p *Person) Greeting() string {
     return "Bonjour, je m'appelle " + p.FirstName
 }
 
-var michel = Person{}
+var michel = new(Person)
 michel.FirstName = "Michel"
 michel.Greeting() //return ...
 ```
@@ -161,7 +179,7 @@ michel.Greeting() //return ...
 Rapidement, dans `(p *Person)`, \* permet de définir que l'on passe l'objet et donc si dans méthode Greeting nous le modifions, il sera impacté.
 Si l'on ne met pas \*, alors l'objet Person est passé comme copie (fonction pure) et les modifications apportées n'auront pas d'imapct
 
-## pour aller plus loin
+### pour aller plus loin
 
 https://tour.golang.org/welcome/1
 
