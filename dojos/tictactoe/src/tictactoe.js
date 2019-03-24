@@ -9,6 +9,10 @@ export default class TicTacToe {
 
   }
 
+  get ended() {
+    return true;
+  }
+
   hello() {
     return "Hello world";
   }

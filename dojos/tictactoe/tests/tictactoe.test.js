@@ -72,6 +72,7 @@ test("On s'arrête quand la grille est remplie", () => {
     new Array(2, 2, 1)
   ];
   let result = tictactoe.play(1, 2);
+
   expect(result).toBeTruthy();
   expect(tictactoe.ended).toBeTruthy();
 
