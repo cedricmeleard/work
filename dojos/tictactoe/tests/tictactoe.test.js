@@ -62,6 +62,7 @@ test("Player 1 et player 2 jouent dans la meme case, impossible", () => {
     [0, 0, 0],
   ]);
   expect(result).toBeFalsy();
+  expect(tictactoe.ended).toBeFalsy();
 });
 
 test("On s'arrête quand la grille est remplie", () => {
@@ -76,4 +77,55 @@ test("On s'arrête quand la grille est remplie", () => {
   expect(result).toBeTruthy();
   expect(tictactoe.ended).toBeTruthy();
 
+});
+
+test("On s'arrête quand le joueur 2 (Diagonale) gagne", () => {
+  let tictactoe = new TicTacToe();
+  tictactoe.grid = [
+    new Array(2, 2, 1),
+    new Array(1, 2, 2),
+    new Array(1, 1, 0)
+  ];
+  tictactoe.player = 2;
+  let result = tictactoe.play(3, 3);
+  expect(tictactoe.winner).toEqual(2);
+});
+
+test("On s'arrête quand le joueur 1 (ligne) gagne", () => {
+  let tictactoe = new TicTacToe();
+  tictactoe.grid = [
+    new Array(2, 2, 1),
+    new Array(1, 2, 2),
+    new Array(1, 1, 0)
+  ];
+  tictactoe.player = 1;
+  let result = tictactoe.play(3, 3);
+  expect(tictactoe.winner).toEqual(1);
+});
+
+test("On s'arrête quand le joueur 1 (colonne) gagne", () => {
+  let tictactoe = new TicTacToe();
+  tictactoe.grid = [
+    new Array(2, 2, 1),
+    new Array(1, 2, 1),
+    new Array(2, 1, 0)
+  ];
+  tictactoe.player = 1;
+  let result = tictactoe.play(3, 3);
+  expect(tictactoe.winner).toEqual(1);
+});
+
+test("Le joueur 2 a gagné, on s'arrête", () => {
+  let tictactoe = new TicTacToe();
+  tictactoe.grid = [
+    new Array(2, 2, 1),
+    new Array(1, 2, 1),
+    new Array(2, 0, 0)
+  ];
+  tictactoe.player = 2;
+  let result = tictactoe.play(2, 3)
+  expect(tictactoe.winner).toEqual(2);
+  result = tictactoe.play(3, 3);
+  expect(tictactoe.winner).toEqual(2);
+  expect(tictactoe.grid[2][2]).toEqual(0);
 });
