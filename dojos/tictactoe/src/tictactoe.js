@@ -11,8 +11,12 @@ export default class TicTacToe {
   }
 
   get ended() {
-    if (this.winner != 0)
+    if (this.winner !== 0)
       return true;
+
+    // //return false if arry contains 0
+    // let transformed = this.grid.map(p => p.includes(0));
+    // return !transformed.includes(false);
 
     for (let i = 0; i < this.grid.length; i++) {
       for (let j = 0; j < this.grid[i].length; j++) {
@@ -24,24 +28,38 @@ export default class TicTacToe {
     return true;
   }
 
-  hello() {
-    return "Hello world";
+  changePlayer(currentPlayer) {
+    return currentPlayer === 1 ? 2 : 1;
   }
+
+  //add player value on a certain cell of grid
+  setPlayerChoice(rowIndex, colIndex) {
+    this.grid[rowIndex][colIndex] = this.player;
+  }
+
+  //player play, shoudl return true if ok, otherwise false
 
   play(x, y) {
 
-    if (!this.ended && this.grid[y - 1][x - 1] == 0) {
+    let rowIndex = y - 1;
+    let colIndex = x - 1;
+    //introduce closure
+    let isValidMove = () => {
+      return !this.ended && this.grid[rowIndex][colIndex] === 0;
+    }
 
-      this.grid[y - 1][x - 1] = this.player;
-      if (this.player == 1)
-        this.player = 2;
-      else this.player = 1;
-      this.winner = this.detectWin(x - 1, y - 1);
+    if (isValidMove()) {
+      //affects played value to grid
+      this.setPlayerChoice(rowIndex, colIndex);
+
+      this.player = this.changePlayer(this.player);
+      this.winner = this.detectWin(colIndex, rowIndex);
       return true;
     }
     return false;
   }
 
+  //get winner if a winner exists
   equals(x1, y1, x2, y2, x3, y3) {
     let a = this.grid[y1][x1];
     let b = this.grid[y2][x2];

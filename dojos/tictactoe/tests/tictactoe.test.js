@@ -4,11 +4,6 @@ test('create TicTacToe object, should not fail', () => {
   expect(new TicTacToe()).toBeDefined();
 });
 
-test('call hello, should return Hello world', () => {
-  let tictactoe = new TicTacToe();
-  expect(tictactoe.hello()).toEqual("Hello world");
-});
-
 test("Quand j'initialise le tictactoe, je dispose d'une grille 3x3, vide", () => {
   let tictactoe = new TicTacToe();
   expect(tictactoe.grid).toBeDefined();
