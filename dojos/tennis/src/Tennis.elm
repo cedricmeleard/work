@@ -1,4 +1,4 @@
-module Tennis exposing (..)
+module Tennis exposing (Game, init, player1Scores, scoreToString)
 
 
 type alias Game =
