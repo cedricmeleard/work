@@ -7,7 +7,8 @@
     "test": "jest",
     "commit": "git add -A; timestamp=$(date +\"%c\") && git commit -m \"TCR @timestamp\";",
     "revert": "git reset --hard",
-    "tcr": "npm test && npm run commit || npm run revert"
+    "tcr": "npm test && npm run commit || npm run revert",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
