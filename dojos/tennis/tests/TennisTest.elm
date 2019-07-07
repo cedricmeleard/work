@@ -36,7 +36,6 @@ suite =
             \_ ->
                 { score1 = 3
                 , score2 = 0
-                , advantage = False
                 }
                     |> Tennis.player1Scores
                     |> Tennis.scoreToString
@@ -45,7 +44,6 @@ suite =
             \_ ->
                 { score1 = 0
                 , score2 = 3
-                , advantage = False
                 }
                     |> Tennis.player2Scores
                     |> Tennis.scoreToString
@@ -54,7 +52,6 @@ suite =
             \_ ->
                 { score1 = 3
                 , score2 = 3
-                , advantage = False
                 }
                     |> Tennis.player1Scores
                     |> Tennis.scoreToString
@@ -63,16 +60,22 @@ suite =
             \_ ->
                 { score1 = 3
                 , score2 = 3
-                , advantage = False
                 }
                     |> Tennis.player2Scores
                     |> Tennis.scoreToString
                     |> Expect.equal "Advantage player 2"
+        , test "player 1 has forty and  player 2 scores should go to deuce (40-40)" <|
+            \_ ->
+                { score1 = 3
+                , score2 = 2
+                }
+                    |> Tennis.player2Scores
+                    |> Tennis.scoreToString
+                    |> Expect.equal "Deuce"
         , test "player 1 has advantage & player 2 score should go to deuce" <|
             \_ ->
                 { score1 = 4
                 , score2 = 3
-                , advantage = True
                 }
                     |> Tennis.player2Scores
                     |> Tennis.scoreToString
@@ -100,7 +103,7 @@ suite =
                     |> Tennis.player1Scores
                     -- 40 - 30
                     |> Tennis.player2Scores
-                    -- 40 - 40
+                    -- Deuce
                     |> Tennis.player1Scores
                     -- Adv p 1
                     |> Tennis.player1Scores

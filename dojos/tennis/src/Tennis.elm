@@ -2,7 +2,7 @@ module Tennis exposing (Game, init, player1Scores, player2Scores, scoreToString)
 
 -- Declare score constants 
 forty = 3
-advantage = 4
+gamePoint = 4
 
 type GameState
     = Normal
@@ -16,7 +16,6 @@ type GameState
 type alias Game =
     { score1 : Int
     , score2 : Int
-    , advantage : Bool
     }
 
 
@@ -24,40 +23,27 @@ init : Game
 init =
     { score1 = 0
     , score2 = 0
-    , advantage = False
     }
 
 
 player1Scores : Game -> Game
 player1Scores game =
-    if game.score1 == forty && game.score2 == advantage then
+    if game.score2 == gamePoint then
         { game | score2 = game.score2 - 1 }
-
-    else if game.score1 == advantage then
-        { game | score1 = game.score1 + 1, advantage = True }
-
     else
         { game | score1 = game.score1 + 1 }
 
 
 player2Scores : Game -> Game
 player2Scores game =
-    if game.score2 == forty && game.score1 == advantage then
+    if game.score1 == gamePoint then
         { game | score1 = game.score1 - 1 }
-
-    else if game.score2 == advantage then
-        { game | score2 = game.score2 + 1, advantage = True }
-
     else
         { game | score2 = game.score2 + 1 }
 
 
 scoreToString : Game -> String
 scoreToString game =
-    scoreToStringInGame game
-
-scoreToStringInGame : Game -> String
-scoreToStringInGame game =
     let
         gamestate =
             computedGameState game
@@ -83,16 +69,16 @@ scoreToStringInGame game =
 
 computedGameState : Game -> GameState
 computedGameState game =
-    if game.score1 == game.score2 && game.advantage then
+    if game.score1 == forty && game.score2 == forty then
         Deuce
 
-    else if game.score1 <= forty && game.score2 <= forty then
+    else if game.score1 < gamePoint && game.score2 < gamePoint then
         Normal
 
-    else if game.score1 == advantage && game.score2 == forty then
+    else if game.score1 == gamePoint && game.score2 == forty then
         AdvantagePlayer1
 
-    else if game.score2 == advantage && game.score1 == forty then
+    else if game.score2 == gamePoint && game.score1 == forty then
         AdvantagePlayer2
 
     else if game.score1 > game.score2 then
