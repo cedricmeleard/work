@@ -9,6 +9,8 @@ import Tennis
 
 type Msg
     = NoOp
+    | Player1Scores
+    | Player2Scores
 
 
 type alias Model =
@@ -26,6 +28,12 @@ update msg model =
         NoOp ->
             model
 
+        Player1Scores ->
+            Tennis.player1Scores model
+
+        Player2Scores ->
+            Tennis.player2Scores model
+
 
 view : Model -> Html Msg
 view model =
@@ -35,12 +43,12 @@ view model =
                 [ div [ class "level" ]
                     [ div [ class "level-left" ]
                         [ div [ class "level-item" ]
-                            [ button [ class "button is-primary is-large" ] [ text "Player 1 Scored" ]
+                            [ button [ class "button is-primary is-large", onClick Player1Scores ] [ text "Player 1 Scored" ]
                             ]
                         ]
                     , div [ class "level-right" ]
                         [ div [ class "level-item" ]
-                            [ button [ class "button is-primary is-large" ] [ text "Player 2 Scored" ]
+                            [ button [ class "button is-primary is-large", onClick Player2Scores ] [ text "Player 2 Scored" ]
                             ]
                         ]
                     ]
