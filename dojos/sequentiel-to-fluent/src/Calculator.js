@@ -2,9 +2,18 @@ class Calculator {
     constructor() {
 
     }
+    withUnitPrice(unitPrice) {
+        this.unitPrice = unitPrice;
+        return this
+    }
 
-    calculate(unitPrice, quantity) {
-        return `${unitPrice*quantity} €`
+    withQuantity(quantity) {
+        this.quantity = quantity;
+        return this
+    }
+
+    calculate() {
+        return `${ this.unitPrice * this.quantity } €`
     }
 }
 
